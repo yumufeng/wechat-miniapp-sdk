@@ -15,6 +15,11 @@ class AccessToken extends WeAppGateway
 {
     protected $api = 'https://api.weixin.qq.com/cgi-bin/token';
     protected $grant_type = 'client_credential';
+
+    public $expiresIn = 7100;
+
+    public $accessToken;
+
     public function getToken()
     {
         $params = [
@@ -22,7 +27,7 @@ class AccessToken extends WeAppGateway
             'appid' => $this->appId,
             'secret' => $this->secret,
         ];
-        $token = $this->get($params);
-        return $token;
+        $this->accessToken = $this->get($params);
+        return $this;
     }
 }
