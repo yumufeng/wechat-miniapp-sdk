@@ -48,7 +48,7 @@ class WeAppGateway
     protected function get($params)
     {
         $url = $this->api . '?' . http_build_query($params);
-        return \curl_get($url);
+        return Helpers::curl_get($url);
     }
 
     /**
@@ -74,7 +74,7 @@ class WeAppGateway
                 'Content-Length' => strlen(json_encode($params))
             ];
         }
-        return \curl_post($url, $params, $headers);
+        return Helpers::curl_post($url, $params, $headers);
     }
 
     /**携带accessToken请求
