@@ -14,10 +14,7 @@
         ],
         "psr-4": {
             "weapp\\": "src"
-        },
-        "files": [
-            "src/Tools/Helpers.php"
-        ]
+        }
     },
     "repositories": {
         "packagist": {
