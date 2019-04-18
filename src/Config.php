@@ -36,7 +36,7 @@ class Config
      */
     public function getAccessToken()
     {
-        $token = \cache()->get(self::ACCESS_TOKEN_REDIS_KEY);
+        $token = \cache(self::ACCESS_TOKEN_REDIS_KEY);
         if (empty($token)) {
             return null;
         }
@@ -52,7 +52,11 @@ class Config
      */
     public function setAccessToken($token, $expires = 0)
     {
-        $setData = \cache()->set(self::ACCESS_TOKEN_REDIS_KEY, $token, $expires);
+        if (extension_loaded('swoole') && PHP_SAPI == 'cli') {
+            $setData = \cache()->set(self::ACCESS_TOKEN_REDIS_KEY, $token, $expires);
+        } else {
+            $setData = \cache(self::ACCESS_TOKEN_REDIS_KEY, $token, $expires);
+        }
         return $setData;
     }
 }
