@@ -25,8 +25,9 @@ class TemplateMsg extends WeAppGateway
 
     /**
      * @param mixed $toUser
+     * @return TemplateMsg
      */
-    public function setToUser($toUser): void
+    public function setToUser($toUser)
     {
         $this->toUser = $toUser;
         return $this;
@@ -34,8 +35,9 @@ class TemplateMsg extends WeAppGateway
 
     /**
      * @param mixed $templateId
+     * @return TemplateMsg
      */
-    public function setTemplateId($templateId): void
+    public function setTemplateId($templateId)
     {
         $this->templateId = $templateId;
         return $this;
@@ -43,8 +45,9 @@ class TemplateMsg extends WeAppGateway
 
     /**
      * @param mixed $page
+     * @return TemplateMsg
      */
-    public function setPage($page): void
+    public function setPage($page)
     {
         $this->page = $page;
         return $this;
@@ -52,8 +55,9 @@ class TemplateMsg extends WeAppGateway
 
     /**
      * @param mixed $formId
+     * @return TemplateMsg
      */
-    public function setFormId($formId): void
+    public function setFormId($formId)
     {
         $this->formId = $formId;
         return $this;
@@ -61,8 +65,9 @@ class TemplateMsg extends WeAppGateway
 
     /**
      * @param mixed $postData
+     * @return TemplateMsg
      */
-    public function setPostData($postData): void
+    public function setPostData($postData)
     {
         $this->postData = $postData;
         return $this;
@@ -70,8 +75,9 @@ class TemplateMsg extends WeAppGateway
 
     /**
      * @param mixed $emphasisKeyword
+     * @return TemplateMsg
      */
-    public function setEmphasisKeyword($emphasisKeyword): void
+    public function setEmphasisKeyword($emphasisKeyword)
     {
         $this->emphasisKeyword = $emphasisKeyword;
         return $this;
@@ -79,10 +85,12 @@ class TemplateMsg extends WeAppGateway
 
     /**
      * @param null $color
+     * @return TemplateMsg
      */
-    public function setColor($color): void
+    public function setColor($color)
     {
         $this->color = $color;
+        return $this;
     }
 
     /**
