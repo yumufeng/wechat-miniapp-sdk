@@ -14,7 +14,8 @@ PHP =>7.0
 
 $weappClient = new \weapp\WeAppFatory([
     'ak' => '',
-    'sk' => ''
+    'sk' => '',
+    'redis=> ''//redis驱动
 ]);
 
 $weappClient->qrCode->createWeQr($path, $scene, $width = 480);

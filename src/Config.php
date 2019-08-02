@@ -14,18 +14,27 @@ class Config
     public $appId;
     public $secret;
     public $accessToken;
+
+    /**
+     * @var \Redis
+     */
+    protected $redisClient;
+
     const ACCESS_TOKEN_REDIS_KEY = 'weapp_access_token';
 
     public function __construct($config = null)
     {
         if (empty($config)) {
-            $config = \config('weapp');
+            $config = \config('sdk.weapp');
         }
         if (isset($config['ak'])) {
             $this->appId = $config['ak'];
         }
         if (isset($config['sk'])) {
             $this->secret = $config['sk'];
+        }
+        if (isset($config['redis'])) {
+            $this->redisClient = $config['redis'];
         }
     }
 
@@ -36,7 +45,7 @@ class Config
      */
     public function getAccessToken()
     {
-        $token = \cache(self::ACCESS_TOKEN_REDIS_KEY);
+        $token = $this->redisClient->get(self::ACCESS_TOKEN_REDIS_KEY);
         if (empty($token)) {
             return null;
         }
@@ -48,15 +57,10 @@ class Config
      * @param $token
      * @param int $expires
      * @return int
-     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function setAccessToken($token, $expires = 0)
     {
-        if (extension_loaded('swoole') && PHP_SAPI == 'cli') {
-            $setData = \cache()->set(self::ACCESS_TOKEN_REDIS_KEY, $token, $expires);
-        } else {
-            $setData = \cache(self::ACCESS_TOKEN_REDIS_KEY, $token, $expires);
-        }
+        $setData = $this->redisClient->set(self::ACCESS_TOKEN_REDIS_KEY, $token, $expires);
         return $setData;
     }
 }
