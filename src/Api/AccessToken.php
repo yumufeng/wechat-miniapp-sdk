@@ -27,7 +27,8 @@ class AccessToken extends WeAppGateway
             'appid' => $this->appId,
             'secret' => $this->secret,
         ];
-        $this->accessToken = $this->get($params);
+        $result = json_decode($this->get($params));
+        $this->accessToken = $result->access_token;
         return $this;
     }
 }

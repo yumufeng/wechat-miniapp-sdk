@@ -23,16 +23,19 @@ class QrCode extends WeAppGateway
     /**
      * 获取小程序码，永久的
      * @param $path
-     * @param $width
-     * @return resource
-     * @throws \Exception
+     * @param $scene
+     * @param bool $is_hyaline
+     * @param int $width
+     * @return WeAppGateway
      */
-    public function createWeQr($path, $scene, $width = 480)
+    public function createWeQr($path, $scene, $is_hyaline = false, $width = 480)
     {
         $params = [
+            'access_token' => $this->accessToken,
             'page' => $path,
             'width' => $width,
-            'scene' => $scene
+            'scene' => $scene,
+            'is_hyaline' => $is_hyaline
         ];
         return $this->sendRequestWithToken(self::UNLIMIT_API, $params);
     }
