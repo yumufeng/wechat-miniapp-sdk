@@ -65,14 +65,15 @@ class WeAppGateway
         } else {
             $url = $this->api;
         }
+        $params = json_encode($params);
         $headers = [
             'Content-Type: application/json; charset=utf-8',
-            'Content-Length: ' . strlen(json_encode($params))
+            'Content-Length: ' . strlen($params)
         ];
         if (PHP_SAPI == 'cli' && \extension_loaded('swoole')) {
             $headers = [
                 'Content-Type' => 'application/json; charset=utf-8',
-                'Content-Length' => strlen(json_encode($params))
+                'Content-Length' => strlen($params)
             ];
         }
         return Curl::curl_post($url, $params, $headers);

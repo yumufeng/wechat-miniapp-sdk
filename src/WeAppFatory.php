@@ -45,20 +45,16 @@ class WeAppFatory
 
     public function __get($api)
     {
-        try {
-            $classname = __NAMESPACE__ . "\\Api\\" . ucfirst($api);
-            if (!class_exists($classname)) {
-                throw new \Exception('api undefined');
-                return false;
-            }
-            $new = new $classname($this->config);
-            if ($new::NEED_ACCESS_TOKEN == true) {
-                $new->setAccessToken($this->getToken());
-            }
-            return $new;
-        } catch (\Exception $e) {
+        $classname = __NAMESPACE__ . "\\Api\\" . ucfirst($api);
+        if (!class_exists($classname)) {
             throw new \Exception('api undefined');
+            return false;
         }
+        $new = new $classname($this->config);
+        if ($new::NEED_ACCESS_TOKEN == true) {
+            $new->setAccessToken($this->getToken());
+        }
+        return $new;
     }
 
     protected function getToken()

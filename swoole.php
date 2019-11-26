@@ -6,7 +6,6 @@
  * Time: 10:32
  */
 error_reporting(E_ALL);
-require './vendor/autoload.php';
 
 class  swooleDemo
 {
@@ -33,15 +32,18 @@ class  swooleDemo
 
     public function onRequest(\swoole_http_request $request, \swoole_http_response $response)
     {
-
+        require './vendor/autoload.php';
+        $redis = new Redis();
+        $redis->connect('127.0.0.1', 6379);
         $config = [
             'ak' => 'wx8e42c11111ca229c',
             'sk' => '',
-            'redis' => new  \Redis()
+            'redis' => $redis
         ];
         $pdd = new \weapp\WeAppFatory($config);
         $info = $pdd->qrCode->createWeQr(
-
+            '/pages/index/index',
+            '11001'
         );
         $response->end(json_encode($info));
     }

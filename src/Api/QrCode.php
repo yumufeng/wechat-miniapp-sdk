@@ -31,7 +31,6 @@ class QrCode extends WeAppGateway
     public function createWeQr($path, $scene, $is_hyaline = false, $width = 480)
     {
         $params = [
-            'access_token' => $this->accessToken,
             'page' => $path,
             'width' => $width,
             'scene' => $scene,
