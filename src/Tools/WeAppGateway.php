@@ -65,7 +65,6 @@ class WeAppGateway
         } else {
             $url = $this->api;
         }
-        $params = json_encode($params);
         $headers = [
             'Content-Type: application/json; charset=utf-8',
             'Content-Length: ' . strlen($params)
@@ -84,10 +83,13 @@ class WeAppGateway
      * @param $param
      * @return WeAppGateway
      */
-    protected function sendRequestWithToken($url, $param)
+    protected function sendRequestWithToken($url, $params)
     {
         $this->api = $url;
-        return $this->post($param, ['access_token' => $this->accessToken]);
+        if (is_array($params)){
+            $params = json_encode($params);
+        }
+        return $this->post($params, ['access_token' => $this->accessToken]);
     }
 
     /**
