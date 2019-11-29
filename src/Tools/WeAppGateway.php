@@ -65,14 +65,19 @@ class WeAppGateway
         } else {
             $url = $this->api;
         }
+        if (is_array($params)) {
+            $strlen = strlen(json_encode($params));
+        } else {
+            $strlen = strlen($params);
+        }
         $headers = [
             'Content-Type: application/json; charset=utf-8',
-            'Content-Length: ' . strlen($params)
+            'Content-Length: ' . $strlen
         ];
         if (PHP_SAPI == 'cli' && \extension_loaded('swoole')) {
             $headers = [
                 'Content-Type' => 'application/json; charset=utf-8',
-                'Content-Length' => strlen($params)
+                'Content-Length' => $strlen
             ];
         }
         return Curl::curl_post($url, $params, $headers);
@@ -86,7 +91,7 @@ class WeAppGateway
     protected function sendRequestWithToken($url, $params)
     {
         $this->api = $url;
-        if (is_array($params)){
+        if (is_array($params)) {
             $params = json_encode($params);
         }
         return $this->post($params, ['access_token' => $this->accessToken]);
