@@ -12,8 +12,9 @@ use weapp\Api\AccessToken;
 use weapp\Api\CustomMsg;
 use weapp\Api\QrCode;
 use weapp\Api\SessionKey;
+use weapp\Api\Soter;
 use weapp\Api\Statistic;
-use weapp\Api\TemplateMsg;
+use weapp\Api\SubscribeMsg;
 
 /**
  * Class WeAppFatory
@@ -23,7 +24,8 @@ use weapp\Api\TemplateMsg;
  * @property QrCode $qrCode;
  * @property SessionKey $sessionKey;
  * @property Statistic $statistic;
- * @property TemplateMsg $templateMsg;
+ * @property SubscribeMsg $subscribeMsg;
+ * @property Soter $soter;
  */
 class WeAppFatory
 {
