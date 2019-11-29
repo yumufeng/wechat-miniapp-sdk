@@ -16,6 +16,7 @@ use weapp\Api\SessionKey;
 use weapp\Api\Soter;
 use weapp\Api\Statistic;
 use weapp\Api\SubscribeMsg;
+use weapp\Api\TemplateMsg;
 
 /**
  * Class WeAppFatory
@@ -28,6 +29,7 @@ use weapp\Api\SubscribeMsg;
  * @property SubscribeMsg $subscribeMsg;
  * @property Soter $soter;
  * @property Operation $operation;
+ * @property TemplateMsg $templateMsg;
  */
 class WeAppFatory
 {
