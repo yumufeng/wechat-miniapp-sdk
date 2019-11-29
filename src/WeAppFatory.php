@@ -10,6 +10,7 @@ namespace weapp;
 
 use weapp\Api\AccessToken;
 use weapp\Api\CustomMsg;
+use weapp\Api\Operation;
 use weapp\Api\QrCode;
 use weapp\Api\SessionKey;
 use weapp\Api\Soter;
@@ -26,6 +27,7 @@ use weapp\Api\SubscribeMsg;
  * @property Statistic $statistic;
  * @property SubscribeMsg $subscribeMsg;
  * @property Soter $soter;
+ * @property Operation $operation;
  */
 class WeAppFatory
 {
